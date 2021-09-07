@@ -55,10 +55,11 @@ Experience shows that by taking the time to write high-quality code right from t
     <td>Table</td>
     <td><pre>
 Account
-Employee
-Product
-Order
-ProductOrder
+DWH.dEmployee
+DWH.dProduct
+DWH.fOrder
+DWH.fProductOrder
+
 </pre></td>
     <td>
     <pre>
