@@ -1,6 +1,6 @@
 
 
-# KMS ETL-SSIS Coding Standards
+# ETL-SSIS Coding Standards
 
   - [1. Purpose](#1-purpose)
   - [2. Common Naming Conventions](#2-common-naming-conventions)
@@ -70,21 +70,22 @@ Experience shows that by taking the time to write high-quality code right from t
 
 Rules:    [**SchemaName.]&lt;TableName&gt;**
 
-Examples: NTSP.Rx
+Examples: 
+  DWH.fSaleOrder
 
-  NTSPDL.ManualAdjustments
+  Source.ManualAdjustments
 
-  ETL.FactVisit
+  ETL.fVisit
 
-  Dbo.FactVisit
+  Dbo.fVisit
 
 **Notes:**  Scheme Name is corresponding source file
 
 Exampes:
 
-NTSPDL.THSClaims
+CRM.Customer
 
-ACO.PatientList
+ERP.Account
 
 ### 3.2 Columns
 
@@ -108,9 +109,9 @@ vw\_SourceProcedures
 
 ### 3.4 Store procedures
 
-Rules:    [**SchemaName.]sps\_&lt;Action&gt;&lt;StoreProcedureName&gt;**
+Rules:    [**SchemaName.]p\_&lt;Action&gt;&lt;StoreProcedureName&gt;**
 
-Examples: ETL.sps\_GetSourceProcedures
+Examples: ETL.p\_GetSourceProcedures
 
 ### 3.5 Primary Keys
 
@@ -188,7 +189,7 @@ Should have header for function or store procedure
 -- Create date: November 05, 2016
 -- Description:        Move data from delta table to parking
 -- =============================================
-create PROCEDURE [NTSPDL].[sps_MoveDeltaToParking_PacificareClaimA]
+create PROCEDURE [NTSPDL].[p_MoveDeltaToParking_PacificareClaimA]
 ...
 ```
 
@@ -234,19 +235,20 @@ Solution Rules:   **[CompanyName].****&lt;ProjectName&gt;.sln**
 
 Examples: Sandlot.NTSP.sln
 
-  Sandlot.ICW.sln
+  DWH.CustomerDataPlatform.sln
 
-  Sandlot.ACO.sln
+  DWH.ERP.sln
 
 Project Rules:   **[CompanyName].****&lt;ProjectName&gt;.&lt;ModuleName&gt;.dtproj**
 
-Examples: Sandlot.NTSP.Driver.dtproj
+Examples: 
+  DWH.CustomerDataPlatform.Driver.dtproj
 
-  Sandlot.ICW.Extract.dtproj
+  DWH.CustomerDataPlatform.Extract.dtproj
 
-  Sandlot.ACO.Transform.dtproj
+  DWH.CustomerDataPlatform.Transform.dtproj
 
-  Sandlot.THPG.Loading.dtproj
+  DWH.CustomerDataPlatform.Loading.dtproj
 
 ### 4.2 Packages
 
@@ -260,11 +262,11 @@ You can define prefix for your own, however, we recommend the following:
 
 Examples:
 
-  ERawTHSClaims.dtsx
+  EdCustomer.dtsx
 
-  TFactUnitVisit.dtsx
+  TfSaleOrder.dtsx
 
-  LFactUnitVisit.dtsx
+  LfSaleOrder.dtsx
 
   **Prefix module:**
 
@@ -416,12 +418,12 @@ NumRowsException
   - Example:
 ```sql
   SELECT
-          CLAIM_NUMBER,
-          PCP_PROVIDER_ID,
-          ASSOCIATED_PROVIDER_ID,
-          Upper(LTRIM(RTRIM(MEMBER_ID))) as MEMBER_ID
+          ID,
+          FistName,
+          LastName,
+          Upper(LTRIM(RTRIM(Code))) as CustomerCode
           ...
-  FROM NTSPDL.NTSPPacHeader with (nolock)
+  FROM DWH.fCustomerCode with (nolock)
 ```
 
 ### 5.2 Optimize lookup Transformation
@@ -431,11 +433,13 @@ NumRowsException
   - Example:
 ```sql
     SELECT
-            ProcedureSk,
-            Upper(ProcedureCodeWithoutDot) as ProcedureCode,
-            upper(ProcedureCodeScheme) as ProcedureCodeScheme
+          ID,
+          FistName,
+          LastName,
+          Upper(LTRIM(RTRIM(Code))) as CustomerCode
+          ...
     FROM
-            ETL.RefProcedure with (nolock)
+            DWH.dCustomer with (nolock)
 ```
   - Consider add NOLOCK
   - Use Shared Lookup Cache
