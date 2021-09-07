@@ -72,12 +72,8 @@ Rules:    [**SchemaName.]&lt;TableName&gt;**
 
 Examples: 
   DWH.fSaleOrder
-
-  Source.ManualAdjustments
-
-  ETL.fVisit
-
-  Dbo.fVisit
+  STG.fVisit
+  DBO.fVisit
 
 **Notes:**  Scheme Name is corresponding source file
 
