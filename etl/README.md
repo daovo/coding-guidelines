@@ -233,7 +233,7 @@ Correct prefixes for each datatype are shown in the table below:
 
 Solution Rules:   **[CompanyName].****&lt;ProjectName&gt;.sln**
 
-Examples: Sandlot.NTSP.sln
+Examples: 
 
   DWH.CustomerDataPlatform.sln
 
