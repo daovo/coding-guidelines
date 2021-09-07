@@ -151,17 +151,17 @@ vw_EmployeeForReport
 <tr>
     <td>Stored Procedure</td>
     <td><pre>
-sp_EmployeeUpdate
-sp_ProductInsert
-sp_OrderInsertUpdate
-sp_EmployeeGet
+p_EmployeeUpdate
+p_ProductInsert
+p_OrderInsertUpdate
+p_EmployeeGet
 </pre></td>
     <td>
     
 </td>
     <td>
     <pre>
-- Use prefix “sp_”
+- Use prefix “p_”
 - Use action as suffixes
 - Use Pascal Case
 
@@ -366,11 +366,11 @@ Unlike a lot of the other database objects discussed here, stored procedures are
 
 **Prefixes or Suffixes:**
 
-The way you name your stored procedures depends on how you want to group them within a listing. It is recommended that you have your procedures ordered by the table/business entity they perform a database operation on, and adding the database activity &quot; Get, Save, or Delete&quot; as a suffix, e.g., &quot;spProductInfoGet&quot; or &quot;spOrderSave&quot;.
+The way you name your stored procedures depends on how you want to group them within a listing. It is recommended that you have your procedures ordered by the table/business entity they perform a database operation on, and adding the database activity &quot; Get, Save, or Delete&quot; as a suffix, e.g., &quot;p_ProductInfoGet&quot; or &quot;p_OrderSave&quot;.
 
-If your procedure returns a scalar value, or performs an operation like validation, you should use the verb and noun combination. For example, &quot;spValidateLogin&quot;.
+If your procedure returns a scalar value, or performs an operation like validation, you should use the verb and noun combination. For example, &quot;p_ValidateLogin&quot;.
 
-The use of the &quot;sp&quot; prefix is required. This will help developers identify stored procedures and differentiate them from other non prefixed objects such as tables when viewing a listing of database objects.
+The use of the &quot;p_&quot; prefix is required. This will help developers identify stored procedures and differentiate them from other non prefixed objects such as tables when viewing a listing of database objects.
 
 **Bad Prefixes:**
 
@@ -480,15 +480,15 @@ We have a modular system that deals with students and teacher data separately. W
 
 As we implement naming conventions for our new objects processing specific to each module we create an easier way to find and view module specific functionality.
 
-sp_STUAttendanceInserUpdate
+p_STUAttendanceInserUpdate
 
-sp_TEACredentialsDelete
+p_TEACredentialsDelete
 
-sp_STUValidateStudentID
+p_STUValidateStudentID
 
-sp_TEAAddressInsertUpdate
+p_TEAAddressInsertUpdate
 
-sp_STUAddressInsertUpdate
+p_STUAddressInsertUpdate
 
 vw_STUAllStudents
 
@@ -581,7 +581,7 @@ INSERT, UPDATE, DELETE and SELECT statements. This improves the performance of s
 SET NOCOUNT ON is a procedural level instructions and as such there is no need to include a corresponding SET NOCOUNT OFF command as the last statement in the batch. Refer to the example below.
 
 ```sql
-    CREATE PROCEDURE dbo.spDoStuff AS
+    CREATE PROCEDURE dbo.p_DoStuff AS
     SET NOCOUNT ON
     SELECT * FROM MyTable
     INSERT INTO MyTable(Col1,Col2,Col3)
@@ -611,7 +611,7 @@ Block comments are preferred to single line comments (even for commenting a sing
 Important code blocks within stored procedures and user defined functions should be commented. Brief functionality descriptions should be included where important or complicated processing is taking place.
 
 ```sql
-    CREAIE PROCEDURE [dbo].[sp_GBLValidateConcurrency]
+    CREAIE PROCEDURE [dbo].[p_GBLValidateConcurrency]
     @tablenane varchar(255),
     @recordID int,
     @lastUpdate datetine,
@@ -739,7 +739,7 @@ SQL Server 7.0 – 9.0(2005) – Use this methodology to handle errors in versio
 Tally errors. Rollback if failure occurs anywhere in proc.
 
 ```sql
-    CREATE PROCEDURE dbo.spDoStuff
+    CREATE PROCEDURE dbo.p_DoStuff
     @var1 INT
     AS
     SET NOCOUNT ON
@@ -773,7 +773,7 @@ Tally errors. Rollback if failure occurs anywhere in proc.
 End processing when error is reached and return error to application.
 
 ```sql
-    CREATE PROCEDURE dbo.spDoStuff
+    CREATE PROCEDURE dbo.p_DoStuff
     @var1 INT
     AS
 
@@ -811,7 +811,7 @@ End processing when error is reached and return error to application.
 SQL Server 10.0(2008) and greater – SQL version 10.0 has added Try/Catch functionality and new functions to report error status to enhance error handling. You may implement this methodology when developing in SQL 10.0 or higher.
 
 ```sql
-    CREATE PROCEDURE dbo.spDoStuff
+    CREATE PROCEDURE dbo.p_DoStuff
     @var1 INT
     AS
 
@@ -875,7 +875,7 @@ With SQL Server version 9.0 and greater the database engine has enhanced paramet
 There is, however, a work around. See the example below. By using this method you will in effect bypass parameter sniffing. I would suggest only using this where you find problems with parameter sniffing. And of course, avoid as much as possible the situation in which we have to deal with parameter sniffing.
 
 ```sql
-    CREATE PROCEDURE dbo.sp_DoStuff
+    CREATE PROCEDURE dbo.p_DoStuff
     @var1 int,
     @var2 varchar(20)
     AS
