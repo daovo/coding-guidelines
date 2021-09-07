@@ -242,7 +242,7 @@ Don&#39;t use prefixes unless they are deemed necessary to help you organize you
 
 In some cases, your tables might be sharing a schema/database with other tables that are not related in any way. In this case, it is sometimes a good idea to prefix your table names with some characters that group your tables together. For example, for a healthcare application you might give your tables an &quot;Hc&quot; prefix so that all of the tables for that application would appear in alphabetized lists together. Note that even for the prefix, use PascalCase. Do not use underscores in your prefixes. The last kind of prefix that is acceptable is one that allows you to group logical units of tables. A plausible example could entail a large application (30 to 40+ tables) that handled both Payroll and Benefits data. You could prefix the tables dealing with payroll with a &quot;Pay&quot; or &quot;Prl&quot; prefix and give the tables dealing with benefits data a &quot;Ben&quot; or &quot;Bfts&quot; prefix. The goal of both this prefix and the aforementioned shared schema/database prefix is to allow you to group specific tables together alphabetically in lists and distinguish them from unrelated tables. Lastly, if a prefix is used for this purpose, the shared schema/database prefix is a higher grouping level and comes first in the name, for example, &quot;HcPayClients&quot; not &quot;PayHcClients&quot;.
 
-**Data Wareohouse Table Names:**
+**Data Warehouse Table Names:**
 
 There are 3 kind of tables in data warehouse
 - Dimention Table: [SchemaName].[d][TableName]	e.g. DWH.dCustomer
