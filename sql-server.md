@@ -55,9 +55,9 @@ Experience shows that by taking the time to write high-quality code right from t
     <td>Table</td>
     <td><pre>
 Account
-DWH.dEmployee
+dEmployee
 DWH.dProduct
-DWH.fOrder
+fOrder
 DWH.fProductOrder
 
 </pre></td>
@@ -135,14 +135,14 @@ PkOrder_ProductId
 <tr>
     <td>View</td>
     <td><pre>
-vwEmployeeForReport
+vw_EmployeeForReport
 </pre></td>
     <td>
     
 </td>
     <td>
     <pre>
-- Use prefix “vw”
+- Use prefix “vw_”
 - Use Pascal Case
 - Use the same convention as table name
 </pre>
@@ -151,17 +151,17 @@ vwEmployeeForReport
 <tr>
     <td>Stored Procedure</td>
     <td><pre>
-spEmployeeUpdate
-spProductInsert
-spOrderInsertUpdate
-spEmployeeGet
+sp_EmployeeUpdate
+sp_ProductInsert
+sp_OrderInsertUpdate
+sp_EmployeeGet
 </pre></td>
     <td>
     
 </td>
     <td>
     <pre>
-- Use prefix “sp”
+- Use prefix “sp_”
 - Use action as suffixes
 - Use Pascal Case
 
@@ -171,8 +171,8 @@ spEmployeeGet
 <tr>
     <td>Function</td>
     <td><pre>
-fnConvertMileageToRuby
-fnFormatZip
+fn_ConvertMileageToRuby
+fn_FormatZip
 
 </pre></td>
     <td>
@@ -180,7 +180,7 @@ fnFormatZip
 </td>
     <td>
     <pre>
-- Use prefix “fn”
+- Use prefix “fn_”
 - Start with a verb
 - Use Pascal Case
 </pre>
@@ -199,7 +199,7 @@ trAccountRecycleDelete
 </td>
     <td>
     <pre>
-- Use prefix “tr”
+- Use prefix “tr_”
 - Use “Insert”, “Update” or “Delete” as suffixes
 </pre>
 </td>
@@ -480,17 +480,17 @@ We have a modular system that deals with students and teacher data separately. W
 
 As we implement naming conventions for our new objects processing specific to each module we create an easier way to find and view module specific functionality.
 
-spSTUAttendanceInserUpdate
+sp_STUAttendanceInserUpdate
 
-spTEACredentialsDelete
+sp_TEACredentialsDelete
 
-spSTUValidateStudentID
+sp_STUValidateStudentID
 
-spTEAAddressInsertUpdate
+sp_TEAAddressInsertUpdate
 
-spSTUAddressInsertUpdate
+sp_STUAddressInsertUpdate
 
-vwSTUAllStudents
+vw_STUAllStudents
 
 ## 3. Coding Convention
 ### 3.1 SQL Statements – SELECT
@@ -611,7 +611,7 @@ Block comments are preferred to single line comments (even for commenting a sing
 Important code blocks within stored procedures and user defined functions should be commented. Brief functionality descriptions should be included where important or complicated processing is taking place.
 
 ```sql
-    CREAIE PROCEDURE [dbo].[spGBLValidateConcurrency]
+    CREAIE PROCEDURE [dbo].[sp_GBLValidateConcurrency]
     @tablenane varchar(255),
     @recordID int,
     @lastUpdate datetine,
@@ -875,7 +875,7 @@ With SQL Server version 9.0 and greater the database engine has enhanced paramet
 There is, however, a work around. See the example below. By using this method you will in effect bypass parameter sniffing. I would suggest only using this where you find problems with parameter sniffing. And of course, avoid as much as possible the situation in which we have to deal with parameter sniffing.
 
 ```sql
-    CREATE PROCEDURE dbo.spDoStuff
+    CREATE PROCEDURE dbo.sp_DoStuff
     @var1 int,
     @var2 varchar(20)
     AS
