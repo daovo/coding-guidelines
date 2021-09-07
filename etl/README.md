@@ -161,7 +161,7 @@ fn\_GetSourceProcedures
 
 Rules:
 
-**[ServerName\_]**  **&lt;DatabaseName&gt;&lt;YYYY&gt;&lt;MMM&gt;&lt;DD&gt;****.bak**
+**[ServerName\_]**  **&lt;DatabaseName&gt;&lt;YYYY&gt;&lt;MM&gt;&lt;DD&gt;****.bak**
 
 Examples: ProductionWF\_EdwLanding2013May18.bak
 
