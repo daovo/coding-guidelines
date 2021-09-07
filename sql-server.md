@@ -1,4 +1,4 @@
-# KMS SQL Server Coding Standards
+# SQL Server Coding Standards
 
 - [1. Purpose](#1-purpose)
 - [2. Naming Convention](#2-naming-convention)
